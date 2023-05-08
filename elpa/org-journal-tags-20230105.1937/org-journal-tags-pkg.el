@@ -1,0 +1,2 @@
+;;; Generated package description from org-journal-tags.el  -*- no-byte-compile: t -*-
+(define-package "org-journal-tags" "20230105.1937" "Tagging and querying system for org-journal" '((emacs "27.1") (org-journal "2.1.2") (magit-section "3.3.0") (transient "0.3.7")) :commit "dfb3b2d583ceb7ad9fbc8ac23ab6316ae172e9fb" :authors '(("Korytov Pavel" . "thexcloud@gmail.com")) :maintainers '(("Korytov Pavel" . "thexcloud@gmail.com")) :maintainer '("Korytov Pavel" . "thexcloud@gmail.com") :url "https://github.com/SqrtMinusOne/org-journal-tags")

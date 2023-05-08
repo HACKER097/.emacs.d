@@ -17,7 +17,7 @@
  '(mini-frame-internal-border-color "SteelBlue4")
  '(mini-frame-show-parameters '((top . 50) (width . 0.7) (left . 0.5) (border-width . 1)))
  '(package-selected-packages
-   '(catppuccin-theme telephone-line all-the-icons-dired fill-column-indicator python-mode nlinum corfu-prescient beacon cape all-the-icons-completion magit treemacs-all-the-icons treemacs emmet-mode rust-mode tree-sitter-langs org-bullets vertico mini-frame which-key smooth-scrolling move-text vterm windresize smartparens page-break-lines dashboard doom-themes)))
+   '(org-pretty-tags org-journal-tags org-journal doom-modeline catppuccin-theme telephone-line all-the-icons-dired fill-column-indicator python-mode nlinum corfu-prescient beacon cape all-the-icons-completion magit treemacs-all-the-icons treemacs emmet-mode rust-mode tree-sitter-langs org-bullets vertico mini-frame which-key smooth-scrolling move-text vterm windresize smartparens page-break-lines dashboard doom-themes)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -149,8 +149,11 @@
 
 ; Org mode #################################################
 
+(global-visual-line-mode)
+
 (setq org-ellipsis ":")
 (setq org-bullets-bullet-list '("●" "◉" "○" "◌" "✸" "★" "✭" "☆" "⚬"))
+(setq org-babel-python-command "python3.10")
 (setq org-babel-python-command "python3.10")
 (setq org-startup-with-inline-images t)
 (setq org-support-shift-select t)
@@ -165,7 +168,9 @@
 
 
 (plist-put org-format-latex-options :scale 1.5)
-
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((python . t)))
 
 
 ; Programming ##############################################
