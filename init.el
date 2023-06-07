@@ -17,7 +17,9 @@
  '(mini-frame-internal-border-color "SteelBlue4")
  '(mini-frame-show-parameters '((top . 50) (width . 0.7) (left . 0.5) (border-width . 1)))
  '(package-selected-packages
-   '(org-pretty-tags org-journal-tags org-journal doom-modeline catppuccin-theme telephone-line all-the-icons-dired fill-column-indicator python-mode nlinum corfu-prescient beacon cape all-the-icons-completion magit treemacs-all-the-icons treemacs emmet-mode rust-mode tree-sitter-langs org-bullets vertico mini-frame which-key smooth-scrolling move-text vterm windresize smartparens page-break-lines dashboard doom-themes)))
+   '(eat age ement svelte-mode le-thesaurus writeroom-mode ox-hugo org-roam-ui org-roam org-pretty-tags org-journal-tags org-journal catppuccin-theme telephone-line all-the-icons-dired fill-column-indicator python-mode nlinum corfu-prescient beacon cape all-the-icons-completion magit treemacs-all-the-icons treemacs emmet-mode rust-mode tree-sitter-langs org-bullets vertico mini-frame which-key smooth-scrolling move-text vterm windresize smartparens page-break-lines dashboard doom-themes))
+ '(smtpmail-smtp-server "imap.gmail.com")
+ '(smtpmail-smtp-service 25))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -45,23 +47,25 @@
 
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-(cua-mode)
+;;(cua-mode)
 (which-key-mode)
+
+(require 'smooth-scrolling)
+(require 'smartparens-config)
+(require 'treemacs-all-the-icons)
 
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (smooth-scrolling-mode 1)
 (smartparens-global-mode t)
+(smooth-scrolling-mode 1)
 
+(setq smooth-scroll-margin 1)
 (setq-default cursor-type 'bar)
 (setq doom-themes-treemacs-theme "doom-colors")
 (setq vterm-shell "/bin/fish")
 (set-face-attribute 'default nil :height 110)
-
-(require 'smooth-scrolling)
-(require 'smartparens-config)
-(require 'treemacs-all-the-icons)
 
 (treemacs-load-theme "all-the-icons")
 
@@ -109,7 +113,10 @@
 
 (global-set-key (kbd "C-x w") #'windresize)
 (global-set-key (kbd "s-v") 'vterm-split)
+(global-set-key (kbd "M-s M-s") 'ispell-word)
 (global-set-key (kbd "M-o") 'ace-window)
+(global-set-key (kbd "M-[") 'le-thesaurus-get-antonyms)
+(global-set-key (kbd "M-]") 'le-thesaurus-get-synonyms)
 (global-set-key [M-up] 'move-text-up)
 (global-set-key [M-down] 'move-text-down)
 
@@ -151,12 +158,14 @@
 
 (global-visual-line-mode)
 
+(setq org-startup-folded t)
 (setq org-ellipsis ":")
 (setq org-bullets-bullet-list '("●" "◉" "○" "◌" "✸" "★" "✭" "☆" "⚬"))
 (setq org-babel-python-command "python3.10")
 (setq org-babel-python-command "python3.10")
 (setq org-startup-with-inline-images t)
 (setq org-support-shift-select t)
+(setq org-journal-encrypt-journal t)
 
 (require 'org-bullets)
 (require 'org-tempo)
@@ -277,6 +286,7 @@ Useful for prompts such as `eval-expression' and `shell-command'."
   ;;(add-to-list 'completion-at-point-functions #'cape-line)
 )
 
+
 (setq-local corfu-auto t
             corfu-auto-delay 2
             corfu-auto-prefix 0
@@ -298,3 +308,7 @@ Useful for prompts such as `eval-expression' and `shell-command'."
   (kind-icon-default-face 'corfu-default) ; to compute blended backgrounds correctly
   :config
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+
+; Spelling ##############################################
+
+(setq ispell-program-name "aspell")
